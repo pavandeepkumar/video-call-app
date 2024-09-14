@@ -3,6 +3,8 @@ const { createServer } = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors')
 const app = express();
+const dotenv = require('dotenv').config();
+ 
 app.use(cors({
     origin: '*'
 }))
@@ -58,7 +60,7 @@ app.get('/', (req, res) => {
         sucess: true
     })
 })
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 4000
 server.listen(PORT, () => console.log(`Server listening on ${PORT}  `))
 
 module.exports = server
