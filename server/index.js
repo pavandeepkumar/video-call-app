@@ -1,11 +1,13 @@
 const express = require('express');
 const { createServer } = require('http');
 const { Server } = require('socket.io');
-
+const cors = require('cors')
 const app = express();
-
+app.use(cors({
+    origin: '*'
+}))
 const server = createServer(app);
-const io = new Server(server);
+const io = new Server(server, { cors: true });
 const emailToSocketMap = new Map();
 const socketToEmailMap = new Map();
 io.on("connection", (socket) => {
@@ -58,5 +60,7 @@ app.get('/', (req, res) => {
 })
 const PORT = process.env.PORT || 5000
 server.listen(PORT, () => console.log(`Server listening on ${PORT}  `))
+
+module.exports = server
 
 
