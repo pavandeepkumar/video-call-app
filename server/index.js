@@ -4,12 +4,12 @@ const { Server } = require('socket.io');
 const cors = require('cors')
 const app = express();
 const dotenv = require('dotenv').config();
- 
+
 app.use(cors({
     origin: '*'
 }))
 const server = createServer(app);
-const io = new Server(server, { cors: true });
+const io = new Server(server, { cors: true, httpCompression: true });
 const emailToSocketMap = new Map();
 const socketToEmailMap = new Map();
 io.on("connection", (socket) => {

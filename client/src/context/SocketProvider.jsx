@@ -6,7 +6,7 @@ export const useSocket = () => {
     return socket
 }
 const SocketProvider = ({ children }) => {
-    const socket = useMemo(() => io('localhost:5000'))
+    const socket = useMemo(() => io('http://15.206.189.255/:5000'))
     return (
         <SocketContext.Provider value={socket}>
             {children}
